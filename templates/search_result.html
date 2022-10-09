@@ -47,15 +47,16 @@
                             <div role="tabpanel" class="tab-pane active" id="description">
                                 {{ elem.description }}
                                 <div>
-                                    <form id="form-buying-product" class="form-inline">
-                                        <input type="number" class="form-control" name="number" id="number">
-                                        <button type="submit" id="submit-btn" class="btn btn-success btn-buy"
-                                                data-product_id = "{{ elem.product_id }}"
-                                                data-name = "{{ elem.name }}"
-                                                data-price = "{{ elem.price }}"
-                                        >Замовити
-                                        </button>
-                                    </form>
+                                    <div class="form-group">
+                                        <form action="/order/" target="_blank">
+                                            <button type="submit" id="submit-btn" class="btn btn-success btn-buy"
+                                                    data-product_id = "{{ product_id }}"
+                                                    data-name = "{{ product.name }}"
+                                                    data-price = "{{ product.price }}"
+                                            >Замовити
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="delivery">
@@ -63,7 +64,11 @@
                             </div>
                             <div role="tabpanel" class="tab-pane" id="messages">
                                 <button type="submit" class="btn btn-success btn-feedback">
-                                    <a href="feedback/">Хочу залишити відгук про товар</a>
+                                    {% if user.is_authenticated %}
+                                        <a href="feedback/">Хочу залишити відгук про товар</a>
+                                    {% else %}
+                                        <a href="register/">Хочу залишити відгук про товар</a>
+                                    {% endif %}
                                 </button>
                             </div>
                         </div>

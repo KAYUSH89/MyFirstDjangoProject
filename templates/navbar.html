@@ -1,0 +1,48 @@
+<!-- Static navbar -->
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" >
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">CLOTHES FOR YOU</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+              <li class="active"><a href="/">Головна сторінка</a></li>
+              {% if user.is_authenticated %}
+              <li class="active"><a href="/logout/">Вийти({{user.username}})</a></li>
+              {% else %}
+              <li class="active"><a href="/login/">Увійти</a></li>
+              {% endif %}
+              <li class="active"><a href="/register/">Зареєструватись</a></li>
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Категорії <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                      <li><a href="/jackets/">Куртки</a></li>
+                      <li><a href="/siuts/">Костюми</a></li>
+                  </ul>
+              </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <Li>
+                  <div class="search-container">
+                      <form action="/search/" method="post" class="form-inline my-2 my-lg-0">
+                          {% csrf_token %}
+                          <input name='search' type="text" class="form-control mr-sm-2" placeholder="Пошук" aria-label="Search">
+                          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Пошук</button>
+                      </form>
+                  </div>
+              </Li>
+              <li>
+                  <div class="basket-container">
+                      <a href="/order/">Оформити замовлення</a>
+                  </div>
+              </li>
+          </ul>
+      </div><!--|.nav-collapse -->
+  </div>
+</nav>

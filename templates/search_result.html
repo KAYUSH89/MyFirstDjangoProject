@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="section4">
+    {% for elem in result_list %}
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    {% for image_item in elem.productimage_set.all %}
+                        <div class="product-image-item">
+                            <img src="{{ image_item.image.url }}" class="img-thumbnail" alt="clothes">
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="col-lg-6">
+                    <h1 class="text-center">
+                        {{ elem.name }}
+                    </h1>
+                    <div class="">
+                        <p>
+                            Ціна: {{ elem.price }}
+                        </p>
+                    </div>
+                    <div>
+                      <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#description" aria-controls="home" role="tab" data-toggle="tab">
+                                    Опис товару
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#delivery" aria-controls="profile" role="tab" data-toggle="tab">
+                                    Доставка
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">
+                                    Залишити відгук
+                                </a>
+                            </li>
+                        </ul>
+
+                      <!-- Tab panes -->
+                        <div class="tab-content product-description-tabs">
+                            <div role="tabpanel" class="tab-pane active" id="description">
+                                {{ elem.description }}
+                                <div>
+                                    <form id="form-buying-product" class="form-inline">
+                                        <input type="number" class="form-control" name="number" id="number">
+                                        <button type="submit" id="submit-btn" class="btn btn-success btn-buy"
+                                                data-product_id = "{{ elem.product_id }}"
+                                                data-name = "{{ elem.name }}"
+                                                data-price = "{{ elem.price }}"
+                                        >Замовити
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="delivery">
+                                <h5>Тут будуть описані умови доставки</h5>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="messages">
+                                <button type="submit" class="btn btn-success btn-feedback">
+                                    <a href="feedback/">Хочу залишити відгук про товар</a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock content %}

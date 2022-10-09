@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="{% static 'static_dev/feedback.css' %}">
+
+    <div class="general-container">
+        <div class="container top-container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h1 class="title">Доброго дня!<br>
+                    Тут ви можете залишити ваш відгук:</h1>
+                    <div>
+                        <form action="" method="post" class="form-control-static">{%  csrf_token %}
+                            <div class="form-group">
+                                {{ form.as_p  }}
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-orange">Підтвердити</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

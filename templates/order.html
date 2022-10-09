@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="{% static 'static_dev/pages.css' %}">
+
+    <div class="general-container">
+        <div class="container top-container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h1 class="title">Ласкаво просимо до магазину!<br>
+                    Для оформлення замовлення залиште Ваші контактні данні і ми обов'язково з Вами зв'яжемся</h1>
+                    <div>
+                        <form action="" method="post" class="form-inline text-center">{%  csrf_token %}
+                            <div class="form-group">
+                                <label>Ваше ім'я: </label>
+                                <input type="text" name="{{ form.name.name }}" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Ваш мейл: </label>
+                                <input type="text" name="{{ form.email.name }}" class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-orange">Відправити</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

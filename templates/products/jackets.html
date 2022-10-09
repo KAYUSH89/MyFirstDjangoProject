@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="section2 jackets-container">
+        <div class="container">
+           <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="text-center">
+                        Куртки
+                    </h1>
+                </div>
+               {% for product_image in products_images_jackets %}
+                   {% include 'product_item.html' %}
+               {% endfor %}
+           </div>
+        </div>
+    </div>
+{% endblock content %}

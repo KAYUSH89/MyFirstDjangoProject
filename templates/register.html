@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="{% static 'static_dev/feedback.css' %}">
+
+    <div class="general-container">
+        <div class="container top-container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h1 class="title">Доброго дня!<br>
+                    Реєстрація на сайті </h1>
+                    <div>
+                        <form action="" method="post">
+                            {% csrf_token %}
+
+                            {% for field in form %}
+                            <label for="">{{ field.label }}</label>
+                            <div>{{ field }}</div>
+                            {% if field.errors %}
+                            <p>{{ field.errors }}</p>
+                            {% endif %}
+                            {% endfor %}
+
+                            <input name='register' type='submit' value="Зареєструватись" class="btn btn-primary btn-orange"></input>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

@@ -26,7 +26,13 @@ print(f"BASE_DIR: {BASE_DIR}") #new
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_l&+(&=u&q#qtr6$f9y8qzux7h+^56#uxh6&b^v8tk-m7$xqt6'
+SECRET_KEY = "CHANGE_ME!!!! (P.S. the SECRET_KEY environment variable will be used, if set, instead)."
+
+if 'SECRET_KEY' in os.environ:
+    SECRET_KEY = os.environ["SECRET_KEY"]
+
+print(f"SECRET_KEY: {SECRET_KEY}")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = True
@@ -149,6 +155,8 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static", "static_prod")
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = 'media/'
 

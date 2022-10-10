@@ -78,7 +78,7 @@ ROOT_URLCONF = 'djangoProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [], #changed from 'DIRS': [BASE_DIR / 'shop/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -96,6 +96,7 @@ WSGI_APPLICATION = 'djangoProject.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+MAX_CONN_AGE = 600
 
 DATABASES = {
     #'default': {
@@ -113,11 +114,19 @@ DATABASES = {
 
 }
 
+if "DATABASE_URL" in os.environ:
+    # Configure Django for DATABASE_URL environment variable.
+    DATABASES["default"] = dj_database_url.config(conn_max_age=MAX_CONN_AGE, ssl_require=True)
+print(f"DATABASES['default']: {DATABASES['default']}")
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
+
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', #adding
+    },
 
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
@@ -150,17 +159,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+#STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+#STATICFILES_DIRS = [os.path.join(BASE_DIR, "shop/static")]
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static", "static_prod")
+#STATIC_ROOT = os.path.join(BASE_DIR, "shop/static", "static_prod")
+
+STATIC_ROOT = BASE_DIR / 'staticfiles' #new
+STATIC_URL = 'static/' #new
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = 'media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "static", "media")
+MEDIA_ROOT = os.path.join(BASE_DIR, "shop/static", "media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

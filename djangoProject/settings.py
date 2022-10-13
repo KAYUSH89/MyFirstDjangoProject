@@ -35,18 +35,18 @@ print(f"SECRET_KEY: {SECRET_KEY}")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-#if not IS_HEROKU:
-#    DEBUG = True
+#DEBUG = True
+if not IS_HEROKU:
+    DEBUG = True
 
-#if IS_HEROKU:
-#    ALLOWED_HOSTS = ["*"]
-#else:
-#    ALLOWED_HOSTS = []
+if IS_HEROKU:
+    ALLOWED_HOSTS = ["*"]
+else:
+    ALLOWED_HOSTS = []
 
 #ALLOWED_HOSTS = []
 #DEBUG = False
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+#ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
 # Application definition
 

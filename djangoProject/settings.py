@@ -35,18 +35,18 @@ print(f"SECRET_KEY: {SECRET_KEY}")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-if not IS_HEROKU:
-    DEBUG = True
+DEBUG = True
+#if not IS_HEROKU:
+#    DEBUG = True
 
-if IS_HEROKU:
-    ALLOWED_HOSTS = ["*"]
-else:
-    ALLOWED_HOSTS = []
+#if IS_HEROKU:
+#    ALLOWED_HOSTS = ["*"]
+#else:
+#    ALLOWED_HOSTS = []
 
 #ALLOWED_HOSTS = []
 #DEBUG = False
-#ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
 # Application definition
 
@@ -166,7 +166,7 @@ USE_TZ = True
 #STATIC_ROOT = os.path.join(BASE_DIR, "shop/static", "static_prod")
 
 STATIC_ROOT = BASE_DIR / 'staticfiles' #new
-STATIC_URL = 'static/' #new
+STATIC_URL = 'shop/static/' #new
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 

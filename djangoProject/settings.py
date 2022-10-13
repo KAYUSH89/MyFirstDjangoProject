@@ -44,9 +44,10 @@ DEBUG = True
 #else:
 #    ALLOWED_HOSTS = []
 
-#ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []
+
 #DEBUG = False
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+#ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
 # Application definition
 
